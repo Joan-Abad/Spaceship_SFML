@@ -1,0 +1,13 @@
+﻿  HUD.cpp
+  Nave.cpp
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\sfml\sfml\nave.cpp(73): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  NaveBullets.cpp
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\sfml\sfml\navebullets.cpp(11): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  SFML.cpp
+  Window.cpp
+  Generating Code...
+  SFML.vcxproj -> C:\Users\Joan Abad\Documents\Joan Abad\SFML\SpaceshipGame\SFML\Debug\SFML.exe
