@@ -59,7 +59,7 @@ public:
 	//Check action cooldowns
 	void checkActionsCooldowns();
 
-	//int getPlayerPoints() { return points; };
+	int getPlayerPoints() { return points; };
 
 	//void sumPoints(int quantityToSum); 
 

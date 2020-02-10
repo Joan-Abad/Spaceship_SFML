@@ -1,20 +1,21 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Nave.h"
+#include "GameMode.h"
+#include "HUD.h"
 
 class Window
 {
 private:
 	sf::RenderWindow window;
 
-	//Nave sss; 
 	Nave player; 
 	//classes instances 
-	//Nave nave;
 
-	//GameMode gameMode; 
 
-	//HUD scoreHUD;
+	GameMode gameMode; 
+	
+	HUD scoreHUD;
 
 public:
 	Window();

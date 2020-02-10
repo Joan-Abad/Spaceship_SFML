@@ -7,13 +7,11 @@ Window::Window() : player(300,300)
 
 }
 
-Window::Window(int anchura, int altura) : player(anchura, altura)
+Window::Window(int anchura, int altura) : player(anchura, altura), scoreHUD("Score: ", 58, sf::Color::White,sf::Vector2f(40.f,20.f), player)
 {
-	window.create(sf::VideoMode(anchura, altura), "SURIVE THE ASTEROIDS!", sf::Style::None);
+	window.create(sf::VideoMode(anchura, altura), "SURIVE THE ASTEROIDS!", sf::Style::Default);
 	drawWindow();
 }
-
-
 
 void Window::drawWindow()
 {
@@ -32,26 +30,25 @@ void Window::drawWindow()
 		player.Main();
 
 		//GameModeStuff
-		//gameMode.SpawnAsteroidsRandomlly(window);
-		//gameMode.MoveAllAsteroids();
+		gameMode.SpawnAsteroidsRandomlly(window);
+		gameMode.MoveAllAsteroids();
 
 
 		window.clear(sf::Color(60,45,105));
 
 		//DRAW NAVE
 		window.draw(player.getNaveSprite());
-		//window.draw(sss.getNaveSprite());
 		
 		//DRAW ASTEROID
-		//gameMode.drawAsteroids(window);
+		gameMode.drawAsteroids(window);
 
 		//DRAW NAVE BULLETS
 		player.drawBullets(window);
 
-		//scoreHUD.setTextScore(nave);
+		scoreHUD.setTextScore(player);
 
 		//DRAW HUD
-		//window.draw(scoreHUD.getTextScore());
+		window.draw(scoreHUD.getTextScore());
 
 		window.display();
 	}

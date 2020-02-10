@@ -1,7 +1,7 @@
 #include "HUD.h"
 #include <string>
 #include <iostream>
-/*
+
 HUD::HUD() = default;
 
 //Font size in pixels
@@ -39,4 +39,3 @@ void HUD::setTextScore(Nave & nave)
 	finalString = "Score: " + std::to_string(nave.getPlayerPoints());
 	text_Score.setString(finalString);
 }
-*/

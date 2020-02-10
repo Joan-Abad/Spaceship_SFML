@@ -1,7 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Nave.h"
-/*
+
 class Nave;
 
 class HUD
@@ -32,4 +32,3 @@ public:
 
 };
 
-*/

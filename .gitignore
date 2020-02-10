@@ -31,5 +31,9 @@
 *.out
 *.app
 
+#SFML
 SFML/*deps32/*
 
+#VC data base
+SFML/.vs/*
+*.db

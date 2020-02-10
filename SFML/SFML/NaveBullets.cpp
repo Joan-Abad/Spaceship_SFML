@@ -12,7 +12,6 @@ NaveBullets::NaveBullets(int spawnPositionX, int spawnPositionY)
 	spr_bullets.setScale(0.5f,0.5f);
 
 	//gamemode = &(nave.owningWindow->getGameMode());
-	
 }
 
 
