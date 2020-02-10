@@ -12,10 +12,10 @@ private:
 	Nave player; 
 	//classes instances 
 
-
 	GameMode gameMode; 
 	
 	HUD scoreHUD;
+
 
 public:
 	Window();

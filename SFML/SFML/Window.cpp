@@ -1,6 +1,8 @@
 #include "Window.h"
 #include <time.h>
 #include <string>
+#include <iostream>
+
 
 Window::Window() : player(300,300)
 {
@@ -26,7 +28,9 @@ void Window::drawWindow()
 		}
 
 		//Nave Stuff
-		player.NaveInput();
+		
+		player.NaveInput(window);
+		
 		player.Main();
 
 		//GameModeStuff

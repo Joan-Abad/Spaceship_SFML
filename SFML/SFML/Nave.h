@@ -3,6 +3,7 @@
 #include <vector>
 //#include "NaveBullets.h"
 
+class HUD; 
 class NaveBullets; 
 
 class Nave
@@ -15,7 +16,8 @@ private:
 
 	//Initial Values
 	float naveSpeed; 
-	float naveSpeedMultiplayer; 
+	float naveSpeedMultiplayer = 0.2f;
+	
 
 	//Shooting
 	bool shoot; 
@@ -31,6 +33,14 @@ private:
 	//PLAYER POINTS
 	int points = 10;
 
+	//COLLISIONS
+	void CheckPlayerCollisions(sf::RenderWindow & window);
+
+	bool canMoveLeft = true;
+	bool canMoveRight = true;
+	bool canMoveUp = true;
+	bool canMoveDown = true;
+
 public: 
 
 	//Constructors
@@ -44,7 +54,7 @@ public:
 	inline sf::Sprite &getNaveSprite() { return spr_Nave; };
 
 	// Movement
-	virtual void NaveInput();
+	virtual void NaveInput(sf::RenderWindow & window);
 
 	//draw bullets on windows
 	void drawBullets(sf::RenderWindow &window);
@@ -61,10 +71,10 @@ public:
 
 	int getPlayerPoints() { return points; };
 
-	//void sumPoints(int quantityToSum); 
+	void sumPoints(int quantityToSum); 
 
-	//HUD * owningHUd; 
+	HUD * owningHUd; 
 	//Window * owningWindow = nullptr;
-
+	const sf::Vector2f getSpriteSize(sf::Sprite sprite);
 };
 

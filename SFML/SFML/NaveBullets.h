@@ -1,6 +1,5 @@
 #pragma once
 #include "SFML/Graphics.hpp"
-//#include "Nave.h"
 #include "Asteroides.h"
 #include <vector>
 #include "GameMode.h"
@@ -16,7 +15,9 @@ private:
 	sf::Sprite spr_bullets; 
 	sf::Texture tex_bullets; 
 	
+	//MODIFIABLE VALUES
 	float bulletSpeed = 0.4f; 
+	float bulletSize = 0.5f;
 
 	bool destroy = false; 
 
@@ -24,6 +25,7 @@ private:
 	sf::Clock bulletClock; 
 	sf::Time bulletTime; 
 
+	
 
 public: 
 
@@ -39,7 +41,7 @@ public:
 
 	float bulletLifeTime();
 
-	static constexpr float bulletLifetime = 1.f;
+	static constexpr float bulletLifetime = 1.5f;
 
 	GameMode * gamemode;
 };

@@ -9,7 +9,7 @@ NaveBullets::NaveBullets(int spawnPositionX, int spawnPositionY)
 {
 	spr_bullets.setTexture(GraphicsUtils::InitializeTexture(tex_bullets, "laser.png"));
 	spr_bullets.setPosition(spawnPositionX, spawnPositionY);
-	spr_bullets.setScale(0.5f,0.5f);
+	spr_bullets.setScale(bulletSize, bulletSize);
 
 	//gamemode = &(nave.owningWindow->getGameMode());
 }

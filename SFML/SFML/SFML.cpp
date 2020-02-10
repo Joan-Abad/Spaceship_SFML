@@ -6,6 +6,6 @@ int main()
 {
 	// CREATE WINDOW LOOP
 	//Window window(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height);
-	Window window(1920, 1080);
+	Window window(980, sf::VideoMode::getDesktopMode().height);
 	return 0;
 }
