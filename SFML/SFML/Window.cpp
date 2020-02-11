@@ -8,7 +8,7 @@ Window::Window() : player(300,300,*this)
 
 }
 
-Window::Window(int anchura, int altura) : player(anchura, altura, *this), scoreHUD("Score: ", 58, sf::Color::White,sf::Vector2f(40.f,20.f), player), gameMode()
+Window::Window(int anchura, int altura) : player(anchura, altura, *this), playerHUD("Score: ", 58, sf::Color::White, sf::Vector2f(40.f, 20.f), player, sf::Vector2i(anchura,altura))
 {
 	window.create(sf::VideoMode(anchura, altura), "SURIVE THE ASTEROIDS!", sf::Style::Default);
 	drawWindow();
@@ -47,10 +47,11 @@ void Window::drawWindow()
 		//DRAW NAVE BULLETS
 		player.drawBullets(window);
 
-		scoreHUD.setTextScore(player);
+		//Player score
+		playerHUD.setTextScore(player);
 
 		//DRAW HUD
-		window.draw(scoreHUD.getTextScore());
+		playerHUD.drawHUD(window);
 
 		window.display();
 	}

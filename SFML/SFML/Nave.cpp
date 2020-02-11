@@ -66,8 +66,8 @@ void Nave::NaveInput(sf::RenderWindow & window)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 	{
 		//SET SHOOT POINT ORIGIN
-		float xCannonPosition = spr_Nave.getGlobalBounds().left + (getSpriteSize(spr_Nave).x)/2.5;
-		float YCannonPosition = spr_Nave.getGlobalBounds().top - (getSpriteSize(spr_Nave).x) / 4;
+		float xCannonPosition = spr_Nave.getGlobalBounds().left + (GraphicsUtils::getSpriteSize(spr_Nave).x)/2.5;
+		float YCannonPosition = spr_Nave.getGlobalBounds().top - (GraphicsUtils::getSpriteSize(spr_Nave).x) / 4;
 		cannonPosition = { xCannonPosition, YCannonPosition };
 		if(shoot == true)
 		{	
@@ -123,13 +123,6 @@ void Nave::checkActionsCooldowns()
 		}
 	}
 }
-const sf::Vector2f Nave::getSpriteSize(sf::Sprite sprite)
-{
-	sf::Vector2f SpriteSize; 
-	SpriteSize.x = sprite.getTexture()->getSize().x * sprite.getScale().x;
-	SpriteSize.y = sprite.getTexture()->getSize().y * sprite.getScale().y;
-	return SpriteSize;
-}
 
 void Nave::sumPoints(int quantityToSum)
 {
@@ -180,9 +173,9 @@ void Nave::Main()
 void Nave::CheckPlayerCollisions(sf::RenderWindow & window)
 {
 	float spaceshipLeftSideMargin = 0;
-	float spaceshipRightSideMargin = window.getSize().x - getSpriteSize(spr_Nave).x;
+	float spaceshipRightSideMargin = window.getSize().x - GraphicsUtils::getSpriteSize(spr_Nave).x;
 	float spaceshipTopMargin = 0;
-	float spaceshipBotMargin = window.getSize().y - getSpriteSize(spr_Nave).y;
+	float spaceshipBotMargin = window.getSize().y - GraphicsUtils::getSpriteSize(spr_Nave).y;
 
 	//X SIDE
 		// LEFT COLLISION

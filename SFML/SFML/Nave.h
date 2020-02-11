@@ -18,7 +18,7 @@ private:
 	//Initial Values
 	float naveSpeed; 
 	float naveSpeedMultiplayer = 0.2f;
-	
+	float life = 1.f; 
 
 	//Shooting
 	bool shoot; 
@@ -37,6 +37,7 @@ private:
 	//COLLISIONS
 	void CheckPlayerCollisions(sf::RenderWindow & window);
 
+	//MOVEMENT
 	bool canMoveLeft = true;
 	bool canMoveRight = true;
 	bool canMoveUp = true;
@@ -50,9 +51,6 @@ public:
 
 	//Main 
 	virtual void Main();
-
-	//Getters
-	inline sf::Sprite &getNaveSprite() { return spr_Nave; };
 
 	// Movement
 	virtual void NaveInput(sf::RenderWindow & window);
@@ -69,16 +67,23 @@ public:
 
 	//Check action cooldowns
 	void checkActionsCooldowns();
+	
+	// Gameplay
+	void sumPoints(int quantityToSum);
 
+	// COLLISIONS
 	void checkCollisionSpaceship();
+	
+	// Getters
+	inline sf::Sprite &getNaveSprite() { return spr_Nave; };
+	inline int getPlayerPoints() { return points; };
+	inline int getLife() { return life; };
 
-	int getPlayerPoints() { return points; };
 
-	void sumPoints(int quantityToSum); 
-
+	//CLASS POINTERS
 	HUD * owningHUd; 
 	Window * owningWindow = nullptr;
-	std::string debug = "debug";
-	const sf::Vector2f getSpriteSize(sf::Sprite sprite);
+
+
 };
 

@@ -1,5 +1,4 @@
-﻿  SFML.cpp
-c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\sfml.cpp(11): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Window.cpp
-  Generating Code...
+﻿  HUD.cpp
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\nave.h(80): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\hud.cpp(47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   SFML.vcxproj -> C:\Users\Joan Abad\Documents\Joan Abad\SFML\SpaceshipGame\Spaceship_SFML\SFML\Debug\SFML.exe

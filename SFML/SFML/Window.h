@@ -13,7 +13,7 @@ private:
 	//classes instances 
 
 	
-	HUD scoreHUD;
+	HUD playerHUD;
 
 
 public:
