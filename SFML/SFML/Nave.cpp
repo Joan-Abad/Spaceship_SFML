@@ -1,5 +1,6 @@
 #include "Nave.h"
 #include "NaveBullets.h"
+#include "Window.h"
 #include "GraphicsUtils.h"
 #include <iostream>
 #include "HUD.h"
@@ -9,7 +10,7 @@ Nave::Nave()
 
 };
 
-Nave::Nave(int anchuraPantalla, int alturaPantalla) 
+Nave::Nave(int anchuraPantalla, int alturaPantalla, Window & window) 
 {
 	spr_Nave.setTexture(GraphicsUtils::InitializeTexture(tex_Nave, "nave.png"));
 
@@ -27,6 +28,9 @@ Nave::Nave(int anchuraPantalla, int alturaPantalla)
 
 	//shoot
 	shoot = true; 
+	
+	owningWindow = &window; 
+
 }
 
 void Nave::NaveInput(sf::RenderWindow & window)
@@ -62,27 +66,30 @@ void Nave::NaveInput(sf::RenderWindow & window)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 	{
 		//SET SHOOT POINT ORIGIN
-		float xCannonPosition = spr_Nave.getGlobalBounds().left - (getSpriteSize(spr_Nave).x / 1.6);
-		float YCannonPosition = spr_Nave.getGlobalBounds().top - (getSpriteSize(spr_Nave).y / 2);
+		float xCannonPosition = spr_Nave.getGlobalBounds().left + (getSpriteSize(spr_Nave).x)/2.5;
+		float YCannonPosition = spr_Nave.getGlobalBounds().top - (getSpriteSize(spr_Nave).x) / 4;
 		cannonPosition = { xCannonPosition, YCannonPosition };
-
 		if(shoot == true)
 		{	
+			shoot = false;
 			//CREATE NEW BULLET
-			NaveBullets * nav = new NaveBullets(cannonPosition.x, cannonPosition.y);
+			NaveBullets * nav = new NaveBullets(cannonPosition.x, cannonPosition.y,*this);
 			
 			//ADD TO VECTOR TO DELETE AFTER
-			astVec.push_back(nav);
-			shoot = false; 
+			vec_spaceshipBullets.push_back(nav);
+			std::cout << vec_spaceshipBullets.size() << std::endl;
+			shootingClock.restart();
 		}
 	}
+
+	
 }
 
 void Nave::drawBullets(sf::RenderWindow &window)
 {
-	if (!astVec.empty())
+	if (!vec_spaceshipBullets.empty())
 	{
-		for (auto &bullet : astVec)
+		for (auto &bullet : vec_spaceshipBullets)
 		{
 			window.draw(bullet->getBulletSprite());
 		}
@@ -91,14 +98,14 @@ void Nave::drawBullets(sf::RenderWindow &window)
 
 void Nave::eraseBulletsIfLifeTimesOver()
 {
-	if (!astVec.empty())
+	if (!vec_spaceshipBullets.empty())
 	{
-		for (size_t i = 0; i < astVec.size(); i++)
+		for (size_t i = 0; i < vec_spaceshipBullets.size(); i++)
 		{
-			if (astVec[i]->bulletLifeTime() > NaveBullets::bulletLifetime)
+			if (vec_spaceshipBullets[i]->bulletLifeTime() > NaveBullets::bulletLifetime)
 			{
 				//std::cout << astVec[i]->bulletLifeTime();
-				astVec.erase(astVec.begin() + i);
+				vec_spaceshipBullets.erase(vec_spaceshipBullets.begin() + i);
 			}
 		}
 	}
@@ -111,8 +118,8 @@ void Nave::checkActionsCooldowns()
 	{
 		if (shoot == false)
 		{
-			shoot = true;
 			shootingClock.restart();
+			shoot = true;
 		}
 	}
 }
@@ -135,11 +142,22 @@ void Nave::sumPoints(int quantityToSum)
 
 void Nave::NaveBulletsMovement()
 {
-	if (!astVec.empty())
+	if (!vec_spaceshipBullets.empty())
 	{
-		for (auto &bullet : astVec)
+		for (auto &bullet : vec_spaceshipBullets)
 		{
 			bullet->bulletMovement();
+		}
+	}
+}
+
+void Nave::checkCollisionSpaceship()
+{
+	for (auto &asteroid : owningWindow->gameMode.getAllAsteroids())
+	{
+		if (spr_Nave.getGlobalBounds().intersects(asteroid->getAsteroid().getGlobalBounds()))
+		{
+			//std::cout << "COLLIDING NAVE WITH ASTEROIDS BRUUUUH\n";
 		}
 	}
 }
@@ -154,6 +172,9 @@ void Nave::Main()
 
 	//CHECK ACTIONS
 	checkActionsCooldowns();
+
+	//CHECK COLLISION SPACESHIP
+	checkCollisionSpaceship();
 }
 
 void Nave::CheckPlayerCollisions(sf::RenderWindow & window)
@@ -171,7 +192,6 @@ void Nave::CheckPlayerCollisions(sf::RenderWindow & window)
 		canMoveLeft = false; 
 		canMoveRight = true;
 		canMoveUp = true;
-		std::cout << "\nTOUCHING";
 	}
 		// RIGHT COLLISION
 	else if (spr_Nave.getPosition().x > spaceshipRightSideMargin)

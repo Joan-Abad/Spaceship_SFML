@@ -7,10 +7,16 @@ GameMode::GameMode()
 
 }
 
+std::vector<Asteroides*>& GameMode::getAllAsteroids()
+{
+	return levelAsteroids;
+}
+
 void GameMode::drawAsteroids(sf::RenderWindow & window)
 {
 	for (auto &asteroid : levelAsteroids)
 	{
+		if(asteroid)
 		window.draw(asteroid->getAsteroid());
 	}
 }

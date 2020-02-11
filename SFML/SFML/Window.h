@@ -12,7 +12,6 @@ private:
 	Nave player; 
 	//classes instances 
 
-	GameMode gameMode; 
 	
 	HUD scoreHUD;
 
@@ -25,7 +24,8 @@ public:
 	void drawWindow();
 
 	//Getters
-	sf::RenderWindow &getWindow();
+	//sf::RenderWindow &getWindow();
 	//GameMode &getGameMode() { return gameMode; };
+	GameMode gameMode;
 
 };

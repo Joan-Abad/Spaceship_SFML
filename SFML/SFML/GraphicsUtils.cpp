@@ -6,9 +6,9 @@ sf::Texture & GraphicsUtils::InitializeTexture(sf::Texture &texture, const std::
 {
 	if (!texture.loadFromFile(textureAddress))
 		std::cerr << "No se ha cargar la imagen correctente.\n";
-	else
+	/*else
 	{
 		std::cout << "Se ha cargado corectamente " << textureAddress << std::endl;
-	}
+	}*/
 	return texture;
 }

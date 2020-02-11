@@ -3,6 +3,7 @@
 #include <vector>
 //#include "NaveBullets.h"
 
+class Window; 
 class HUD; 
 class NaveBullets; 
 
@@ -45,7 +46,7 @@ public:
 
 	//Constructors
 	Nave();
-	Nave(int anchuraPantalla, int alturaPantalla);
+	Nave(int anchuraPantalla, int alturaPantalla, Window & window);
 
 	//Main 
 	virtual void Main();
@@ -63,18 +64,21 @@ public:
 	void eraseBulletsIfLifeTimesOver(); 
 
 	//Bullets
-	std::vector<NaveBullets*> astVec;
+	std::vector<NaveBullets*> vec_spaceshipBullets;
 	void NaveBulletsMovement();
 
 	//Check action cooldowns
 	void checkActionsCooldowns();
+
+	void checkCollisionSpaceship();
 
 	int getPlayerPoints() { return points; };
 
 	void sumPoints(int quantityToSum); 
 
 	HUD * owningHUd; 
-	//Window * owningWindow = nullptr;
+	Window * owningWindow = nullptr;
+	std::string debug = "debug";
 	const sf::Vector2f getSpriteSize(sf::Sprite sprite);
 };
 

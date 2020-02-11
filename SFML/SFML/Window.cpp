@@ -3,13 +3,12 @@
 #include <string>
 #include <iostream>
 
-
-Window::Window() : player(300,300)
+Window::Window() : player(300,300,*this)
 {
 
 }
 
-Window::Window(int anchura, int altura) : player(anchura, altura), scoreHUD("Score: ", 58, sf::Color::White,sf::Vector2f(40.f,20.f), player)
+Window::Window(int anchura, int altura) : player(anchura, altura, *this), scoreHUD("Score: ", 58, sf::Color::White,sf::Vector2f(40.f,20.f), player), gameMode()
 {
 	window.create(sf::VideoMode(anchura, altura), "SURIVE THE ASTEROIDS!", sf::Style::Default);
 	drawWindow();
@@ -19,7 +18,6 @@ void Window::drawWindow()
 {
 	while (window.isOpen())
 	{
-		
 		sf::Event event;
 		while (window.pollEvent(event))
 		{

@@ -12,12 +12,13 @@ private:
 
 	float AsteroidSpawnCD = 700.f;
 
+	std::vector<Asteroides*> levelAsteroids;
 	
 public: 
 
 	GameMode();
 
-	std::vector<Asteroides*> levelAsteroids; 
+	std::vector<Asteroides*> &getAllAsteroids();
 
 	void drawAsteroids(sf::RenderWindow &window);
 
@@ -26,7 +27,5 @@ public:
 	void SpawnAsteroidsRandomlly(sf::RenderWindow & window);
 
 	void Main();
-
-
 };
 

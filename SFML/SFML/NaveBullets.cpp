@@ -5,13 +5,13 @@
 
 NaveBullets::NaveBullets() = default;
 
-NaveBullets::NaveBullets(int spawnPositionX, int spawnPositionY)
+NaveBullets::NaveBullets(int spawnPositionX, int spawnPositionY, Nave &nave)
 {
 	spr_bullets.setTexture(GraphicsUtils::InitializeTexture(tex_bullets, "laser.png"));
 	spr_bullets.setPosition(spawnPositionX, spawnPositionY);
 	spr_bullets.setScale(bulletSize, bulletSize);
 
-	//gamemode = &(nave.owningWindow->getGameMode());
+	gamemode = &nave.owningWindow->gameMode;	
 }
 
 
@@ -21,18 +21,25 @@ void NaveBullets::bulletMovement()
 	
 	spr_bullets.move(0, -bulletSpeed);
 
-	//if(gamemode)
-	//CheckAsteroidsCollision(gamemode->levelAsteroids);
+	if (gamemode != nullptr)
+	{
+		CheckAsteroidsCollision(gamemode->getAllAsteroids());
+	}
 }
 
-void NaveBullets::CheckAsteroidsCollision(std::vector<Asteroides*> vec_Asteroids)
+void NaveBullets::CheckAsteroidsCollision(std::vector<Asteroides*> &vec_Asteroids)
 {
+	int checker = 0; 
 	for (auto &asteroid : vec_Asteroids)
 	{
 		if (spr_bullets.getGlobalBounds().intersects(asteroid->getAsteroid().getGlobalBounds()))
 		{
-			std::cout << "COLLIDING WITH AN ASTEROID BRUUUUH";
+			delete(asteroid);
+			vec_Asteroids.erase(vec_Asteroids.begin() + checker);
+			delete(this);
+			checker--;
 		}
+		checker++;
 	}
 }
 
