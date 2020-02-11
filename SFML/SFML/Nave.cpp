@@ -26,11 +26,8 @@ Nave::Nave(int anchuraPantalla, int alturaPantalla, Window & window)
 	//speed
 	naveSpeed = ((anchuraPantalla * naveSpeedMultiplayer) / 1280.f);
 
-	//shoot
-	shoot = true; 
-	
 	owningWindow = &window; 
-
+	
 }
 
 void Nave::NaveInput(sf::RenderWindow & window)
@@ -96,15 +93,14 @@ void Nave::drawBullets(sf::RenderWindow &window)
 	}
 }
 
-void Nave::eraseBulletsIfLifeTimesOver()
+void Nave::eraseBulletsIfOutOfScreen()
 {
 	if (!vec_spaceshipBullets.empty())
 	{
 		for (size_t i = 0; i < vec_spaceshipBullets.size(); i++)
 		{
-			if (vec_spaceshipBullets[i]->bulletLifeTime() > NaveBullets::bulletLifetime)
+			if (vec_spaceshipBullets[i]->getBulletSprite().getPosition().y < 0)
 			{
-				//std::cout << astVec[i]->bulletLifeTime();
 				vec_spaceshipBullets.erase(vec_spaceshipBullets.begin() + i);
 			}
 		}
@@ -124,6 +120,20 @@ void Nave::checkActionsCooldowns()
 	}
 }
 
+void Nave::checkDamagedCooldowns()
+{
+	damagedTimeManage = damagedClock.getElapsedTime();
+	if (damagedTimeManage.asSeconds() >= damageCD)
+	{
+		if (canBeDamaged == false)
+		{
+			spr_Nave.setColor(sf::Color(255, 255, 255, 255));
+			damagedClock.restart();
+			canBeDamaged = true;
+		}
+	}
+}
+
 void Nave::sumPoints(int quantityToSum)
 {
 	points += quantityToSum;
@@ -133,13 +143,27 @@ void Nave::sumPoints(int quantityToSum)
 	}
 }
 
+void Nave::ApplyDamageToPlayer(float damage)
+{
+	if (life > damage)
+		life -= damage;
+	else
+		owningWindow->getWindow().close();//life = 0;
+
+	//Set red when spaceship is damaged
+	spr_Nave.setColor(sf::Color(255, 0, 0, 255));
+
+	//RESET CLOCK WHEN DAMAGE APPLIED
+	damagedClock.restart();
+}
+
 void Nave::NaveBulletsMovement()
 {
 	if (!vec_spaceshipBullets.empty())
 	{
 		for (auto &bullet : vec_spaceshipBullets)
 		{
-			bullet->bulletMovement();
+			bullet->bulletMovement(*this);
 		}
 	}
 }
@@ -150,7 +174,19 @@ void Nave::checkCollisionSpaceship()
 	{
 		if (spr_Nave.getGlobalBounds().intersects(asteroid->getAsteroid().getGlobalBounds()))
 		{
-			//std::cout << "COLLIDING NAVE WITH ASTEROIDS BRUUUUH\n";
+			if(canBeDamaged == true)
+			{
+				//DAMAGED CD
+				canBeDamaged = false;
+				
+				//APPLY DAMAGE THE ASTEROID DOES
+				ApplyDamageToPlayer(asteroid->getDamage()); 
+				
+				//RESET HUD
+				if (owningHUd)
+					owningHUd->setNewLifeBar(*this);
+			
+			}
 		}
 	}
 }
@@ -161,10 +197,11 @@ void Nave::Main()
 	NaveBulletsMovement();
 
 	//CHECK BULLETS
-	eraseBulletsIfLifeTimesOver();
+	eraseBulletsIfOutOfScreen();
 
 	//CHECK ACTIONS
 	checkActionsCooldowns();
+	checkDamagedCooldowns();
 
 	//CHECK COLLISION SPACESHIP
 	checkCollisionSpaceship();

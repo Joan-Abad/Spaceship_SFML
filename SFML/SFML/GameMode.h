@@ -10,7 +10,7 @@ private:
 	sf::Clock clock_Asteroids;
 	sf::Time time_Asteroids; 
 
-	float AsteroidSpawnCD = 700.f;
+	float AsteroidSpawnCD = 700.f; // IN MILI SECONDS
 
 	std::vector<Asteroides*> levelAsteroids;
 	
@@ -22,10 +22,10 @@ public:
 
 	void drawAsteroids(sf::RenderWindow &window);
 
-	void MoveAllAsteroids();
+	void MoveAllAsteroids(sf::RenderWindow & window);
 	
 	void SpawnAsteroidsRandomlly(sf::RenderWindow & window);
 
-	void Main();
+	void Main(sf::RenderWindow & window);
 };
 

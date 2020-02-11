@@ -21,13 +21,20 @@ void GameMode::drawAsteroids(sf::RenderWindow & window)
 	}
 }
 
-void GameMode::MoveAllAsteroids()
+void GameMode::MoveAllAsteroids(sf::RenderWindow & window)
 {
+	int checker = 0; 
 	if (!levelAsteroids.empty())
 	{
 		for (auto &c : levelAsteroids)
 		{
 			c->AsteroidMovement();
+			if (c->getAsteroid().getPosition().y > window.getSize().y)
+			{
+				delete(c);
+				levelAsteroids.erase(levelAsteroids.begin() + checker);
+			}
+			checker++;
 		}
 	}
 
@@ -41,7 +48,7 @@ void GameMode::SpawnAsteroidsRandomlly(sf::RenderWindow & window)
 	if (time_Asteroids.asMilliseconds() > AsteroidSpawnCD)
 	{
 		//ASTEROID SPAWN VARIABLE FOR CONSTRUCTOR WHO SETS POSITION ON SCRREN 
-		int randomSpawnX = rand() % window.getSize().x;
+		int randomSpawnX = rand() % (window.getSize().x - window.getSize().x/10);
 		int randomSpawnY = (rand() % 200 + 50) * -1;
 		sf::Vector2i AsteroidPosition = { randomSpawnX, randomSpawnY };
 
@@ -52,15 +59,15 @@ void GameMode::SpawnAsteroidsRandomlly(sf::RenderWindow & window)
 
 		//CREATE ASTEROID ON GIVEN VARIABLES AND STORE IT ON VECTOR
 		Asteroides *asteroid = new Asteroides(AsteroidPosition, AsteroidSize);
-		levelAsteroids.push_back(asteroid);
+		levelAsteroids.push_back(asteroid);		
 
 		//RESET SPAWN COOLDOWN FOR NEW ASTEROID 
 		clock_Asteroids.restart();
 	}
 }
 
-void GameMode::Main()
+void GameMode::Main(sf::RenderWindow & window)
 {
 	//Asteroid Movement
-	MoveAllAsteroids();
+	MoveAllAsteroids(window);
 }

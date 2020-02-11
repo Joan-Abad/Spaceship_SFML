@@ -1,4 +1,7 @@
-﻿  HUD.cpp
-c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\nave.h(80): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\hud.cpp(47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  Asteroides.cpp
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\asteroides.cpp(7): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
   SFML.vcxproj -> C:\Users\Joan Abad\Documents\Joan Abad\SFML\SpaceshipGame\Spaceship_SFML\SFML\Debug\SFML.exe

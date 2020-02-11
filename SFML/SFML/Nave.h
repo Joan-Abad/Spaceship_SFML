@@ -19,17 +19,22 @@ private:
 	float naveSpeed; 
 	float naveSpeedMultiplayer = 0.2f;
 	float life = 1.f; 
+	bool canBeDamaged = true; 
 
 	//Shooting
-	bool shoot; 
+	bool shoot = true;
 	sf::Vector2f cannonPosition;
 
 	// Timers
 	sf::Clock shootingClock;
 	sf::Time shootingTimeManage;
 
+	sf::Clock damagedClock;
+	sf::Time damagedTimeManage; 
+
 	//COOLDOWNS
 	const float shootingCD = 0.3f; 
+	const float damageCD = 1.f; 
 
 	//PLAYER POINTS
 	int points = 10;
@@ -59,7 +64,7 @@ public:
 	void drawBullets(sf::RenderWindow &window);
 
 	//check cd for shooting
-	void eraseBulletsIfLifeTimesOver(); 
+	void eraseBulletsIfOutOfScreen(); 
 
 	//Bullets
 	std::vector<NaveBullets*> vec_spaceshipBullets;
@@ -67,9 +72,11 @@ public:
 
 	//Check action cooldowns
 	void checkActionsCooldowns();
+	void checkDamagedCooldowns();
 	
 	// Gameplay
 	void sumPoints(int quantityToSum);
+	void ApplyDamageToPlayer(float damage);
 
 	// COLLISIONS
 	void checkCollisionSpaceship();
@@ -77,7 +84,7 @@ public:
 	// Getters
 	inline sf::Sprite &getNaveSprite() { return spr_Nave; };
 	inline int getPlayerPoints() { return points; };
-	inline int getLife() { return life; };
+	inline float getLife() { return life; };
 
 
 	//CLASS POINTERS

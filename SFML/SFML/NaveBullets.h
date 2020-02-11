@@ -18,6 +18,7 @@ private:
 	//MODIFIABLE VALUES
 	float bulletSpeed = 0.4f; 
 	float bulletSize = 0.08f;
+	int damage = 1; 
 
 	bool destroy = false; 
 
@@ -31,15 +32,18 @@ public:
 	
 	NaveBullets(int spawnPositionX, int spawnPositionY, Nave &nave);
 
-	void bulletMovement();
+	//Variables 
+	static constexpr float bulletLifetime = 1.5f;
 
-	void CheckAsteroidsCollision(std::vector<Asteroides*> &vec_Asteroids);
+	void bulletMovement(Nave & nave);
+	void CheckAsteroidsCollision(std::vector<Asteroides*> &vec_Asteroids, Nave & nave);
 
+	//Getters
 	sf::Sprite & getBulletSprite();
+	int getBulletDamage() { return damage; };
 
 	float bulletLifeTime();
-
-	static constexpr float bulletLifetime = 1.5f;
+	
 
 	GameMode * gamemode = nullptr;
 };

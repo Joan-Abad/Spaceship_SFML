@@ -24,8 +24,9 @@ public:
 	void drawWindow();
 
 	//Getters
-	//sf::RenderWindow &getWindow();
+	
 	//GameMode &getGameMode() { return gameMode; };
 	GameMode gameMode;
+	sf::RenderWindow &getWindow() { return window; }
 
 };

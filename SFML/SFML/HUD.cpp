@@ -67,3 +67,9 @@ void HUD::drawHUD(sf::RenderWindow & window)
 	window.draw(PlayerLifeBackRectangle);
 	window.draw(PlayerLife);
 }
+
+void HUD::setNewLifeBar(Nave & nave)
+{
+	PlayerLife.setScale(nave.getLife(), 1.f);
+	std::cout << "Life: " << nave.getLife();
+}

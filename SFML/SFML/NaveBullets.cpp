@@ -2,6 +2,7 @@
 #include "GraphicsUtils.h"
 #include <iostream>
 #include <memory>
+#include "Nave.h"
 
 NaveBullets::NaveBullets() = default;
 
@@ -16,28 +17,33 @@ NaveBullets::NaveBullets(int spawnPositionX, int spawnPositionY, Nave &nave)
 
 
 
-void NaveBullets::bulletMovement()
+void NaveBullets::bulletMovement(Nave & nave)
 {
 	
 	spr_bullets.move(0, -bulletSpeed);
 
 	if (gamemode != nullptr)
 	{
-		CheckAsteroidsCollision(gamemode->getAllAsteroids());
+		CheckAsteroidsCollision(gamemode->getAllAsteroids(), nave);
 	}
 }
 
-void NaveBullets::CheckAsteroidsCollision(std::vector<Asteroides*> &vec_Asteroids)
+void NaveBullets::CheckAsteroidsCollision(std::vector<Asteroides*> &vec_Asteroids, Nave & nave)
 {
 	int checker = 0; 
 	for (auto &asteroid : vec_Asteroids)
 	{
+		//WHEN BULLET COLLIDES ASTEROIDS
 		if (spr_bullets.getGlobalBounds().intersects(asteroid->getAsteroid().getGlobalBounds()))
 		{
-			delete(asteroid);
-			vec_Asteroids.erase(vec_Asteroids.begin() + checker);
+			if (asteroid->getLife() > 1)
+				asteroid->setLifeAsteroid(damage);
+			else{
+				nave.sumPoints(asteroid->getPoints());
+				delete(asteroid);
+				vec_Asteroids.erase(vec_Asteroids.begin() + checker);
+			}
 			delete(this);
-			checker--;
 		}
 		checker++;
 	}

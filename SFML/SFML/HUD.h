@@ -36,5 +36,6 @@ public:
 
 	void drawHUD(sf::RenderWindow & window);
 
+	void setNewLifeBar(Nave & nave);
 };
 
