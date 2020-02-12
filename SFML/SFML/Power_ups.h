@@ -6,12 +6,18 @@
 class Power_ups
 {
 private:
+
+protected: 
 	sf::Texture tex_PowerUp;
 	sf::Sprite	spr_PowerUp;
 
-	std::string PowerUpAddress;
 public:
 	Power_ups(const std::string imageAddress);
+	
+	static int LifeTimePowerUp;
 	virtual void Activate(Nave & nave);
+	sf::Sprite &getSpritePowerUp() { return spr_PowerUp; };
+	static int & getLifeTimePowerUp() { return LifeTimePowerUp; };
+
 };
 

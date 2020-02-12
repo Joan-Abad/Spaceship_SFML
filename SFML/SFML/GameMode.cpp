@@ -2,13 +2,15 @@
 #include <cstdlib>
 #include <iostream>
 #include "GraphicsUtils.h"
+#include "PowerUp_Speed.h"
+#include "PowerUp_Cadence.h"
 
 GameMode::GameMode()
 {
 
 }
 
-std::vector<Asteroides*>& GameMode::getAllAsteroids()
+std::vector<Asteroides*>& GameMode::GetAsteroidOnLevel()
 {
 	return levelAsteroids;
 }
@@ -67,6 +69,20 @@ void GameMode::SpawnAsteroidsRandomlly(sf::RenderWindow & window)
 	}
 }
 
+void GameMode::SpawnPowerUp(Asteroides asteroid)
+{
+	int randPowerup = rand() % 2 + 1;
+
+	if (randPowerup == 1)
+		Power_up_ToSpawn = new PowerUp_Speed;
+	else if (randPowerup == 2)
+		Power_up_ToSpawn = new PowerUp_Cadence;
+
+	Power_up_ToSpawn->getSpritePowerUp().setPosition(asteroid.getAsteroid().getPosition());
+
+	PowerUpsOnLevel.push_back(Power_up_ToSpawn);
+}
+
 void GameMode::Main(sf::RenderWindow & window)
 {
 	//Asteroid Movement
@@ -79,5 +95,16 @@ void GameMode::checkSoundsToPlay()
 	{
 		GraphicsUtils::playSound(buffer, sound, "Audio/Asteroid.wav", 100, false);
 		asteroidDestroyed = false;
+	}
+}
+
+void GameMode::drawPowerups(sf::RenderWindow & window)
+{
+	if (!PowerUpsOnLevel.empty())
+	{
+		for (auto a : PowerUpsOnLevel)
+		{
+			window.draw(a->getSpritePowerUp());
+		}
 	}
 }

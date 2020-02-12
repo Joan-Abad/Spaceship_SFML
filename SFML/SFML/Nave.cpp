@@ -4,6 +4,7 @@
 #include "GraphicsUtils.h"
 #include <iostream>
 #include "HUD.h"
+#include "Power_ups.h"
 
 Nave::Nave()
 {
@@ -25,8 +26,12 @@ Nave::Nave(int anchuraPantalla, int alturaPantalla, Window & window)
 	
 	//speed
 	naveSpeed = ((anchuraPantalla * naveSpeedMultiplayer) / 1280.f);
+	initialNaveSpeed = naveSpeed;
 
-	owningWindow = &window; 
+	initialShootingCD = shootingCD;
+
+	owningWindow = &window;
+
 	
 }
 
@@ -166,7 +171,7 @@ void Nave::ApplyDamageToPlayer(float damage)
 //initial multiply value is 0.2
 void Nave::ChangeNaveSpeed(float multiply)
 {
-	naveSpeed *= multiply;
+	naveSpeed = multiply;
 }
 
 void Nave::NaveBulletsMovement()
@@ -182,7 +187,7 @@ void Nave::NaveBulletsMovement()
 
 void Nave::checkCollisionSpaceship()
 {
-	for (auto &asteroid : owningWindow->gameMode.getAllAsteroids())
+	for (auto &asteroid : owningWindow->gameMode.GetAsteroidOnLevel())
 	{
 		if (spr_Nave.getGlobalBounds().intersects(asteroid->getAsteroid().getGlobalBounds()))
 		{
@@ -201,6 +206,45 @@ void Nave::checkCollisionSpaceship()
 			}
 		}
 	}
+	int contadorPowerUp = 0;
+	for (auto &Powerup : owningWindow->gameMode.PowerUpsOnLevel)
+	{
+		if (spr_Nave.getGlobalBounds().intersects(Powerup->getSpritePowerUp().getGlobalBounds()))
+		{
+			Powerup->Activate(*this);
+			delete(Powerup);
+			owningWindow->gameMode.PowerUpsOnLevel.erase(owningWindow->gameMode.PowerUpsOnLevel.begin() + contadorPowerUp);
+		}
+		contadorPowerUp++;
+		
+	}
+}
+
+void Nave::checkPowerUpCD()
+{
+	//Speed Power UP
+	if (clockSpeedPU)
+	{
+		//SPEEDING UP BROOO
+		timeManagedSpeedPU = clockSpeedPU->getElapsedTime();
+		
+		if (timeManagedSpeedPU.asSeconds() > 4)
+		{
+			naveSpeed = initialNaveSpeed;
+			clockSpeedPU = nullptr;
+		}
+	}
+	if (clockShootCadencePU)
+	{
+		timeManagedShootPU = clockShootCadencePU->getElapsedTime();
+
+		if (timeManagedShootPU.asSeconds() > 7)
+		{
+			shootingCD = initialShootingCD;
+			clockShootCadencePU = nullptr;
+		}
+	}
+
 }
 
 void Nave::Main()
@@ -214,6 +258,7 @@ void Nave::Main()
 	//CHECK ACTIONS
 	checkActionsCooldowns();
 	checkDamagedCooldowns();
+	checkPowerUpCD();
 
 	//CHECK COLLISION SPACESHIP
 	checkCollisionSpaceship();
@@ -227,8 +272,41 @@ void Nave::CheckPlayerCollisions(sf::RenderWindow & window)
 	float spaceshipBotMargin = window.getSize().y - GraphicsUtils::getSpriteSize(spr_Nave).y;
 
 	//X SIDE
+		// TOP - LEFT CORNER
+	if (spr_Nave.getPosition().y < spaceshipTopMargin && spr_Nave.getPosition().x < spaceshipLeftSideMargin)
+	{
+		canMoveDown = true;
+		canMoveLeft = false;
+		canMoveRight = true;
+		canMoveUp = false;
+	}
+		// TOP - RIGHT CORNER
+	else if (spr_Nave.getPosition().y < spaceshipTopMargin && spr_Nave.getPosition().x > spaceshipRightSideMargin)
+	{
+		canMoveDown = true;
+		canMoveLeft = true;
+		canMoveRight = false;
+		canMoveUp = false;
+	}
+	// TOP - LEFT CORNER
+	else if (spr_Nave.getPosition().y > spaceshipBotMargin && spr_Nave.getPosition().x < spaceshipLeftSideMargin)
+	{
+		canMoveDown = false;
+		canMoveLeft = false;
+		canMoveRight = true;
+		canMoveUp = true;
+	}
+	// BOT - RIGHT CORNER
+	else if (spr_Nave.getPosition().y > spaceshipBotMargin && spr_Nave.getPosition().x > spaceshipRightSideMargin)
+	{
+		canMoveDown = false;
+		canMoveLeft = true;
+		canMoveRight = false;
+		canMoveUp = true;
+	}
+	
 		// LEFT COLLISION
-	if (spr_Nave.getPosition().x < spaceshipLeftSideMargin)
+	else if (spr_Nave.getPosition().x < spaceshipLeftSideMargin)
 	{
 		canMoveDown = true; 
 		canMoveLeft = false; 
@@ -245,7 +323,7 @@ void Nave::CheckPlayerCollisions(sf::RenderWindow & window)
 	}
 	//Y SIDE
 		// TOP COLLISION
-	else if (spr_Nave.getPosition().y < spaceshipTopMargin)
+	else if (spr_Nave.getPosition().y <= spaceshipTopMargin)
 	{
 		canMoveDown = true;
 		canMoveLeft = true;
@@ -260,6 +338,7 @@ void Nave::CheckPlayerCollisions(sf::RenderWindow & window)
 		canMoveRight = true;
 		canMoveUp = true;
 	}
+	
 	else
 	{
 		canMoveDown = true;
@@ -267,4 +346,6 @@ void Nave::CheckPlayerCollisions(sf::RenderWindow & window)
 		canMoveRight = true;
 		canMoveUp = true;
 	}
+
+	
 }

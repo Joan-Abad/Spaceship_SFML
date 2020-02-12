@@ -53,26 +53,30 @@ void Window::drawWindow()
 		moveBackground();
 
 		//WINDOW STUFF
-		window.clear();
 
-		window.draw(spr_Background);
+			window.clear();
+
+			window.draw(spr_Background);
 
 			//DRAW NAVE
-		window.draw(player.getNaveSprite());
+			window.draw(player.getNaveSprite());
 		
 			//DRAW ASTEROID
-		gameMode.drawAsteroids(window);
+			gameMode.drawAsteroids(window);
+
+			//DRAW POWERUPS
+			gameMode.drawPowerups(window);
 
 			//DRAW NAVE BULLETS
-		player.drawBullets(window);
+			player.drawBullets(window);
 
 			//Player score
-		playerHUD.setTextScore(player);
+			playerHUD.setTextScore(player);
 
 			//DRAW HUD
-		playerHUD.drawHUD(window);
+			playerHUD.drawHUD(window);
 
-		window.display();
+			window.display();
 	}
 }
 void Window::moveBackground()

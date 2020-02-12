@@ -1,11 +1,21 @@
-﻿  Nave.cpp
-c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\window.h(22): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\nave.cpp(66): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\nave.cpp(73): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+﻿  GameMode.cpp
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\gamemode.cpp(61): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-  Power_ups.cpp
+  Nave.cpp
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\nave.cpp(71): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\nave.cpp(78): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  NaveBullets.cpp
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\navebullets.cpp(13): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  SFML.cpp
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\sfml.cpp(13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Window.cpp
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\window.cpp(21): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Generating Code...
   SFML.vcxproj -> C:\Users\Joan Abad\Documents\Joan Abad\SFML\SpaceshipGame\Spaceship_SFML\SFML\Debug\SFML.exe

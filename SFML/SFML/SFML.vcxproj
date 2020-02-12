@@ -163,6 +163,7 @@
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Nave.cpp" />
     <ClCompile Include="NaveBullets.cpp" />
+    <ClCompile Include="PowerUp_Cadence.cpp" />
     <ClCompile Include="PowerUp_Speed.cpp" />
     <ClCompile Include="Power_ups.cpp" />
     <ClCompile Include="SFML.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="HUD.h" />
     <ClInclude Include="Nave.h" />
     <ClInclude Include="NaveBullets.h" />
+    <ClInclude Include="PowerUp_Cadence.h" />
     <ClInclude Include="PowerUp_Speed.h" />
     <ClInclude Include="Power_ups.h" />
     <ClInclude Include="Window.h" />

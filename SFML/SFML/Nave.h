@@ -17,11 +17,11 @@ private:
 	sf::Texture tex_Nave;
 
 	//Initial Values
+	float initialNaveSpeed;
 	float naveSpeed; 
 	float naveSpeedMultiplayer = 0.2f;
 	float life = 1.f; 
 	bool canBeDamaged = true; 
-
 	//Shooting
 	bool shoot = true;
 	sf::Vector2f cannonPosition;
@@ -34,7 +34,6 @@ private:
 	sf::Time damagedTimeManage; 
 
 	//COOLDOWNS
-	const float shootingCD = 0.3f; 
 	const float damageCD = 1.f; 
 
 	//PLAYER POINTS
@@ -56,6 +55,8 @@ private:
 	//SOUNDS
 	sf::Sound shootSound;
 	sf::Sound hitSound;
+
+	
 
 public: 
 
@@ -82,6 +83,9 @@ public:
 	//Check action cooldowns
 	void checkActionsCooldowns();
 	void checkDamagedCooldowns();
+	float shootingCD = 0.3f;
+	float initialShootingCD;
+
 	
 	// Gameplay
 	void sumPoints(int quantityToSum);
@@ -96,12 +100,18 @@ public:
 	inline int getPlayerPoints() { return points; };
 	inline float getLife() { return life; };
 
+	//TIMERS POWERYPS
+	sf::Time timeManagedSpeedPU;
+	sf::Clock * clockSpeedPU = nullptr;
+	sf::Time timeManagedShootPU;
+	sf::Clock * clockShootCadencePU = nullptr;
+
 
 	//CLASS POINTERS
 	HUD * owningHUd; 
 	Window * owningWindow = nullptr;
 
-
+	void checkPowerUpCD();
 
 };
 

@@ -12,6 +12,7 @@ class Asteroides
 {
 private: 
 
+	//Graphics
 	sf::Texture tex_Asteroid;
 	sf::Sprite spr_Asteroid;
 
@@ -37,6 +38,7 @@ public:
 	//Setters
 	void setLifeAsteroid(int damage);
 
+	//Gameplay
 	void AsteroidMovement();
 
 	

@@ -19,7 +19,7 @@ private:
 	sf::Texture tex_Background;
 	sf::Sprite spr_Background; 
 
-	float backgroundSpeed = -0.01;
+	float backgroundSpeed = -0.01f;
 
 	sf::SoundBuffer backgroundBuffer;
 	sf::Sound backgroundSound;
