@@ -1,7 +1,10 @@
 #include "Window.h"
+#include "GraphicsUtils.h"
 #include <time.h>
 #include <string>
 #include <iostream>
+#include "GraphicsUtils.h"
+#include "PowerUp_Speed.h"
 
 Window::Window() : player(300,300,*this)
 {
@@ -12,11 +15,20 @@ Window::Window(int anchura, int altura) : player(anchura, altura, *this), player
 {
 	window.create(sf::VideoMode(anchura, altura), "SURIVE THE ASTEROIDS!", sf::Style::Default);
 	player.owningHUd = &playerHUD;
+
+	//Background
+	spr_Background.setTexture(GraphicsUtils::InitializeTexture(tex_Background, "Images/background.jpg"));
+	spr_Background.setPosition(anchura, 0);
+	spr_Background.rotate(90);
+
+	//Draw window + loop game
 	drawWindow();
 }
 
 void Window::drawWindow()
 {
+	//PlayBackgroundMusic
+	GraphicsUtils::playSound(backgroundBuffer, backgroundSound, "Audio/Music.wav", 70, true);
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -35,32 +47,47 @@ void Window::drawWindow()
 		//GameModeStuff
 		gameMode.SpawnAsteroidsRandomlly(window);
 		gameMode.MoveAllAsteroids(window);
+		gameMode.checkSoundsToPlay();
 
-		std::cout << "Asteroids in vector: " << gameMode.getAllAsteroids().size() << std::endl;
+		//Move Background
+		moveBackground();
 
-		window.clear(sf::Color(60,45,105));
+		//WINDOW STUFF
+		window.clear();
 
-		//DRAW NAVE
+		window.draw(spr_Background);
+
+			//DRAW NAVE
 		window.draw(player.getNaveSprite());
 		
-		//DRAW ASTEROID
+			//DRAW ASTEROID
 		gameMode.drawAsteroids(window);
 
-		//DRAW NAVE BULLETS
+			//DRAW NAVE BULLETS
 		player.drawBullets(window);
 
-		//Player score
+			//Player score
 		playerHUD.setTextScore(player);
 
-		//DRAW HUD
+			//DRAW HUD
 		playerHUD.drawHUD(window);
 
 		window.display();
 	}
 }
-/*
-sf::RenderWindow & Window::getWindow()
+void Window::moveBackground()
 {
-	return window;
+	spr_Background.move(0, backgroundSpeed);
+
+	if (spr_Background.getPosition().y < -100 && moveUp == true)
+	{
+		backgroundSpeed *= -1;
+		moveUp = false;
+	}
+	if (spr_Background.getPosition().y > 0 && spr_Background.getPosition().y < 1)
+	{
+		backgroundSpeed *= -1;
+		moveUp = true; 
+	}
 }
-*/
+

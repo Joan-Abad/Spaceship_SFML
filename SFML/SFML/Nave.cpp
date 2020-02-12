@@ -74,8 +74,12 @@ void Nave::NaveInput(sf::RenderWindow & window)
 			
 			//ADD TO VECTOR TO DELETE AFTER
 			vec_spaceshipBullets.push_back(nav);
-			std::cout << vec_spaceshipBullets.size() << std::endl;
+
+			GraphicsUtils::playSound(shotSoundBuffer, shootSound, "Audio/laser.wav", 100, false);
+
 			shootingClock.restart();
+
+			
 		}
 	}
 
@@ -146,7 +150,10 @@ void Nave::sumPoints(int quantityToSum)
 void Nave::ApplyDamageToPlayer(float damage)
 {
 	if (life > damage)
+	{
 		life -= damage;
+		GraphicsUtils::playSound(hitSoundBuffer,hitSound,"Audio/Hit.wav",100,false);
+	}
 	else
 		owningWindow->getWindow().close();//life = 0;
 
@@ -155,6 +162,11 @@ void Nave::ApplyDamageToPlayer(float damage)
 
 	//RESET CLOCK WHEN DAMAGE APPLIED
 	damagedClock.restart();
+}
+//initial multiply value is 0.2
+void Nave::ChangeNaveSpeed(float multiply)
+{
+	naveSpeed *= multiply;
 }
 
 void Nave::NaveBulletsMovement()

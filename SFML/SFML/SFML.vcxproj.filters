@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Archivos de origen\Powerups">
+      <UniqueIdentifier>{ed820b87-b062-4259-a3f3-1af4c7ecc026}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Powerups">
+      <UniqueIdentifier>{fe5a2bf2-f0c0-4f1d-95d9-2ce7f4596fcd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SFML.cpp">
@@ -39,6 +45,12 @@
     <ClCompile Include="HUD.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="Power_ups.cpp">
+      <Filter>Archivos de origen\Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUp_Speed.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -60,6 +72,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="HUD.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Power_ups.h">
+      <Filter>Archivos de encabezado\Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp_Speed.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

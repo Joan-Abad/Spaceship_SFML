@@ -163,6 +163,8 @@
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Nave.cpp" />
     <ClCompile Include="NaveBullets.cpp" />
+    <ClCompile Include="PowerUp_Speed.cpp" />
+    <ClCompile Include="Power_ups.cpp" />
     <ClCompile Include="SFML.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -173,6 +175,8 @@
     <ClInclude Include="HUD.h" />
     <ClInclude Include="Nave.h" />
     <ClInclude Include="NaveBullets.h" />
+    <ClInclude Include="PowerUp_Speed.h" />
+    <ClInclude Include="Power_ups.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

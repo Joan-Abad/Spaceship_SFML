@@ -26,6 +26,10 @@ private:
 	sf::Clock bulletClock; 
 	sf::Time bulletTime; 
 
+	//SOUND 
+	sf::SoundBuffer bufferExplosion;
+	sf::Sound soundExplosion;
+
 public: 
 
 	NaveBullets();
@@ -44,7 +48,6 @@ public:
 
 	float bulletLifeTime();
 	
-
 	GameMode * gamemode = nullptr;
 };
 

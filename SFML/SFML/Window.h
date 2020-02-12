@@ -1,8 +1,10 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 #include "Nave.h"
 #include "GameMode.h"
 #include "HUD.h"
+#include "Power_ups.h"
 
 class Window
 {
@@ -12,8 +14,15 @@ private:
 	Nave player; 
 	//classes instances 
 
-	
 	HUD playerHUD;
+
+	sf::Texture tex_Background;
+	sf::Sprite spr_Background; 
+
+	float backgroundSpeed = -0.01;
+
+	sf::SoundBuffer backgroundBuffer;
+	sf::Sound backgroundSound;
 
 
 public:
@@ -29,4 +38,7 @@ public:
 	GameMode gameMode;
 	sf::RenderWindow &getWindow() { return window; }
 
+	void moveBackground();
+
+	bool moveUp = true;
 };

@@ -1,7 +1,11 @@
-﻿  Asteroides.cpp
-c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\asteroides.cpp(7): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+﻿  Nave.cpp
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\window.h(22): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\nave.cpp(66): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\joan abad\documents\joan abad\sfml\spaceshipgame\spaceship_sfml\sfml\sfml\nave.cpp(73): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
-              T=int
+              T=float
           ]
+  Power_ups.cpp
+  Generating Code...
   SFML.vcxproj -> C:\Users\Joan Abad\Documents\Joan Abad\SFML\SpaceshipGame\Spaceship_SFML\SFML\Debug\SFML.exe

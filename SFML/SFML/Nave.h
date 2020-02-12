@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include <vector>
+#include "SFML/Audio.hpp"
 //#include "NaveBullets.h"
 
 class Window; 
@@ -48,6 +49,14 @@ private:
 	bool canMoveUp = true;
 	bool canMoveDown = true;
 
+	// SOUND BUFFER	
+	sf::SoundBuffer shotSoundBuffer;
+	sf::SoundBuffer hitSoundBuffer;
+
+	//SOUNDS
+	sf::Sound shootSound;
+	sf::Sound hitSound;
+
 public: 
 
 	//Constructors
@@ -77,6 +86,7 @@ public:
 	// Gameplay
 	void sumPoints(int quantityToSum);
 	void ApplyDamageToPlayer(float damage);
+	void ChangeNaveSpeed(float multiply);
 
 	// COLLISIONS
 	void checkCollisionSpaceship();
@@ -90,6 +100,7 @@ public:
 	//CLASS POINTERS
 	HUD * owningHUd; 
 	Window * owningWindow = nullptr;
+
 
 
 };

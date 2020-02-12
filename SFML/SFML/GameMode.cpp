@@ -1,6 +1,7 @@
 #include "GameMode.h"
 #include <cstdlib>
 #include <iostream>
+#include "GraphicsUtils.h"
 
 GameMode::GameMode()
 {
@@ -70,4 +71,13 @@ void GameMode::Main(sf::RenderWindow & window)
 {
 	//Asteroid Movement
 	MoveAllAsteroids(window);
+}
+
+void GameMode::checkSoundsToPlay()
+{
+	if (asteroidDestroyed == true)
+	{
+		GraphicsUtils::playSound(buffer, sound, "Audio/Asteroid.wav", 100, false);
+		asteroidDestroyed = false;
+	}
 }

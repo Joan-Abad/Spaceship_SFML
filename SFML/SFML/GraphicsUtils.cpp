@@ -20,3 +20,16 @@ const sf::Vector2f GraphicsUtils::getSpriteSize(sf::Sprite sprite)
 	SpriteSize.y = sprite.getTexture()->getSize().y * sprite.getScale().y;
 	return SpriteSize;
 }
+
+void GraphicsUtils::playSound(sf::SoundBuffer &soundbuffer, sf::Sound &sound, const std::string AudioRouth, float volume, bool loop)
+{
+	if (!soundbuffer.loadFromFile(AudioRouth))
+	{
+		std::cout << "MUSIC NOT LOADED\n";
+
+	}
+	sound.setBuffer(soundbuffer);
+	sound.setVolume(volume);
+	sound.play();
+	sound.setLoop(loop);
+}

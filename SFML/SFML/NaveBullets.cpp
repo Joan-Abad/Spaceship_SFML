@@ -39,6 +39,7 @@ void NaveBullets::CheckAsteroidsCollision(std::vector<Asteroides*> &vec_Asteroid
 			if (asteroid->getLife() > 1)
 				asteroid->setLifeAsteroid(damage);
 			else{
+				gamemode->asteroidDestroyed = true;
 				nave.sumPoints(asteroid->getPoints());
 				delete(asteroid);
 				vec_Asteroids.erase(vec_Asteroids.begin() + checker);
