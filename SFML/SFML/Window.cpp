@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 #include "GraphicsUtils.h"
-#include "PowerUp_Speed.h"
+
 
 Window::Window() : player(300,300,*this)
 {
@@ -17,12 +17,14 @@ Window::Window(int anchura, int altura) : player(anchura, altura, *this), player
 	player.owningHUd = &playerHUD;
 
 	//Background
-	spr_Background.setTexture(GraphicsUtils::InitializeTexture(tex_Background, "Images/background.jpg"));
+	spr_Background.setTexture(GraphicsUtils::InitializeTexture(tex_Background, "Images/background.png"));
 	spr_Background.setPosition(anchura, 0);
 	spr_Background.rotate(90);
 
 	//Draw window + loop game
 	drawWindow();
+	
+
 }
 
 void Window::drawWindow()
@@ -41,16 +43,17 @@ void Window::drawWindow()
 		//Nave Stuff
 		
 		player.NaveInput(window);
-		
+
 		player.Main();
 
 		//GameModeStuff
-		gameMode.SpawnAsteroidsRandomlly(window);
-		gameMode.MoveAllAsteroids(window);
-		gameMode.checkSoundsToPlay();
-
+		gameMode.Main(window);
+		gameMode.spawnAIRandomlly(window.getSize().x, window.getSize().y, window);
+		gameMode.moveAllAI(window.getSize().x, window.getSize().y);
+		gameMode.checkPlayerCollisionWithAIOnLevel(player);
 		//Move Background
 		moveBackground();
+		
 
 		//WINDOW STUFF
 
@@ -61,11 +64,20 @@ void Window::drawWindow()
 			//DRAW NAVE
 			window.draw(player.getNaveSprite());
 		
+			if (player.drawShield == true)
+			{
+				player.getPlayerShield().setPosition(player.getNaveSprite().getPosition());
+				window.draw(player.getPlayerShield());
+			}
+
 			//DRAW ASTEROID
 			gameMode.drawAsteroids(window);
 
 			//DRAW POWERUPS
 			gameMode.drawPowerups(window);
+
+			//DRAW AI
+			gameMode.drawAllAI(window);
 
 			//DRAW NAVE BULLETS
 			player.drawBullets(window);
@@ -75,6 +87,7 @@ void Window::drawWindow()
 
 			//DRAW HUD
 			playerHUD.drawHUD(window);
+
 
 			window.display();
 	}

@@ -24,7 +24,6 @@ private:
 	sf::SoundBuffer backgroundBuffer;
 	sf::Sound backgroundSound;
 
-
 public:
 	Window();
 
@@ -41,4 +40,5 @@ public:
 	void moveBackground();
 
 	bool moveUp = true;
+
 };

@@ -30,9 +30,14 @@ Nave::Nave(int anchuraPantalla, int alturaPantalla, Window & window)
 
 	initialShootingCD = shootingCD;
 
+	//Window
 	owningWindow = &window;
 
-	
+	//Shield
+	GraphicsUtils::InitializeTexture(spr_text, "Images/Circle.png");
+	spr_shield.setTexture(spr_text);	
+	spr_shield.setScale(0.1f, 0.1f);
+	spr_shield.setOrigin(spr_text.getSize().x/3.f , spr_text.getSize().y/3.5f);
 }
 
 void Nave::NaveInput(sf::RenderWindow & window)
@@ -68,8 +73,8 @@ void Nave::NaveInput(sf::RenderWindow & window)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
 	{
 		//SET SHOOT POINT ORIGIN
-		float xCannonPosition = spr_Nave.getGlobalBounds().left + (GraphicsUtils::getSpriteSize(spr_Nave).x)/2.5;
-		float YCannonPosition = spr_Nave.getGlobalBounds().top - (GraphicsUtils::getSpriteSize(spr_Nave).x) / 4;
+		float xCannonPosition = spr_Nave.getGlobalBounds().left + (GraphicsUtils::getSpriteSize(spr_Nave).x)/2.5f;
+		float YCannonPosition = spr_Nave.getGlobalBounds().top - (GraphicsUtils::getSpriteSize(spr_Nave).x) / 4.f;
 		cannonPosition = { xCannonPosition, YCannonPosition };
 		if(shoot == true)
 		{	
@@ -193,16 +198,26 @@ void Nave::checkCollisionSpaceship()
 		{
 			if(canBeDamaged == true)
 			{
-				//DAMAGED CD
-				canBeDamaged = false;
-				
-				//APPLY DAMAGE THE ASTEROID DOES
-				ApplyDamageToPlayer(asteroid->getDamage()); 
-				
-				//RESET HUD
-				if (owningHUd)
-					owningHUd->setNewLifeBar(*this);
-			
+				if (drawShield == false)
+				{
+					//DAMAGED CD
+					canBeDamaged = false;
+
+					//APPLY DAMAGE THE ASTEROID DOES
+					ApplyDamageToPlayer(asteroid->getDamage());
+
+					//RESET HUD
+					if (owningHUd)
+						owningHUd->setNewLifeBar(*this);
+				}
+				else if (drawShield == true)
+				{
+					drawShield = false;
+					canBeDamaged = false; 
+					spr_Nave.setColor(sf::Color(0, 255, 255, 255));
+					GraphicsUtils::playSound(hitSoundBuffer, hitSound, "Audio/ShieldOff.wav", 100, false);
+					damagedClock.restart();
+				}
 			}
 		}
 	}
@@ -211,7 +226,8 @@ void Nave::checkCollisionSpaceship()
 	{
 		if (spr_Nave.getGlobalBounds().intersects(Powerup->getSpritePowerUp().getGlobalBounds()))
 		{
-			Powerup->Activate(*this);
+			Powerup->Activate(*this,owningWindow->gameMode);
+			//BUG -> GameMode window - soundPowerUps goes NULL after delete(Powerup)
 			delete(Powerup);
 			owningWindow->gameMode.PowerUpsOnLevel.erase(owningWindow->gameMode.PowerUpsOnLevel.begin() + contadorPowerUp);
 		}
@@ -225,6 +241,7 @@ void Nave::checkPowerUpCD()
 	//Speed Power UP
 	if (clockSpeedPU)
 	{
+
 		//SPEEDING UP BROOO
 		timeManagedSpeedPU = clockSpeedPU->getElapsedTime();
 		

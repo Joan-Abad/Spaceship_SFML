@@ -33,3 +33,12 @@ void GraphicsUtils::playSound(sf::SoundBuffer &soundbuffer, sf::Sound &sound, co
 	sound.play();
 	sound.setLoop(loop);
 }
+
+void GraphicsUtils::setSoundBuffer(sf::SoundBuffer & soundbuffer, sf::Sound & sound, const std::string AudioRouth, float volume, bool loop)
+{
+	
+	if (!soundbuffer.loadFromFile(AudioRouth))
+		std::cout << "Couldn't load audio\n";
+	else
+		sound.setBuffer(soundbuffer);
+}

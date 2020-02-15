@@ -4,7 +4,7 @@
 #include <vector>
 #include "GameMode.h"
 #include "Window.h"
-
+#include "AI.h"
 
 class GameMode;
 
@@ -20,7 +20,7 @@ private:
 	float bulletSize = 0.08f;
 	int damage = 1; 
 
-	bool destroy = false; 
+	bool destroyed = false; 
 
 	//BULLET LIFE TIMERS
 	sf::Clock bulletClock; 
@@ -41,6 +41,7 @@ public:
 
 	void bulletMovement(Nave & nave);
 	void CheckAsteroidsCollision(std::vector<Asteroides*> &vec_Asteroids, Nave & nave);
+	void CheckEnemiesCollision(std::vector<AI*> &vec_AI, Nave & nave);
 
 	//Getters
 	sf::Sprite & getBulletSprite();

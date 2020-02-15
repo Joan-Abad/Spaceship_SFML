@@ -25,7 +25,12 @@ void NaveBullets::bulletMovement(Nave & nave)
 
 	if (gamemode != nullptr)
 	{
+		//CHECK ASTEROID COLLISION WITH BULLET
 		CheckAsteroidsCollision(gamemode->GetAsteroidOnLevel(), nave);
+
+		//CHECK ENEMY COLLISION IF BULLET STILL ALIVE
+		if(destroyed == false)
+		CheckEnemiesCollision(gamemode->GetAiOnLevel(), nave);
 	}
 }
 
@@ -55,6 +60,32 @@ void NaveBullets::CheckAsteroidsCollision(std::vector<Asteroides*> &vec_Asteroid
 				vec_Asteroids.erase(vec_Asteroids.begin() + checker);
 			}
 			//DELETE BULLET
+			delete(this);
+			destroyed = true; 
+		}
+		checker++;
+	}
+}
+
+void NaveBullets::CheckEnemiesCollision(std::vector<AI*>& vec_AI, Nave & nave)
+{
+	int checker = 0;
+	for (auto &ArtInt : vec_AI)
+	{
+		if (spr_bullets.getGlobalBounds().intersects(ArtInt->getSprite().getGlobalBounds()))
+		{
+			if (ArtInt->getLife() > 1)
+			{
+				ArtInt->applyDamage(damage);
+			}
+			else
+			{
+			
+				nave.sumPoints(ArtInt->points);
+				ArtInt->dead = true;
+				delete(ArtInt);
+				vec_AI.erase(vec_AI.begin() + checker);
+			}
 			delete(this);
 		}
 		checker++;

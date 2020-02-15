@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AI.cpp" />
     <ClCompile Include="Asteroides.cpp" />
     <ClCompile Include="GameMode.cpp" />
     <ClCompile Include="GraphicsUtils.cpp" />
@@ -164,12 +165,14 @@
     <ClCompile Include="Nave.cpp" />
     <ClCompile Include="NaveBullets.cpp" />
     <ClCompile Include="PowerUp_Cadence.cpp" />
+    <ClCompile Include="PowerUp_Shield.cpp" />
     <ClCompile Include="PowerUp_Speed.cpp" />
     <ClCompile Include="Power_ups.cpp" />
     <ClCompile Include="SFML.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AI.h" />
     <ClInclude Include="Asteroides.h" />
     <ClInclude Include="GameMode.h" />
     <ClInclude Include="GraphicsUtils.h" />
@@ -177,6 +180,7 @@
     <ClInclude Include="Nave.h" />
     <ClInclude Include="NaveBullets.h" />
     <ClInclude Include="PowerUp_Cadence.h" />
+    <ClInclude Include="PowerUp_Shield.h" />
     <ClInclude Include="PowerUp_Speed.h" />
     <ClInclude Include="Power_ups.h" />
     <ClInclude Include="Window.h" />

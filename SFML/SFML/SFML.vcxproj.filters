@@ -19,30 +19,39 @@
     <Filter Include="Archivos de encabezado\Powerups">
       <UniqueIdentifier>{fe5a2bf2-f0c0-4f1d-95d9-2ce7f4596fcd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\PlayerObstacles">
+      <UniqueIdentifier>{c6dd3f3f-c36c-486d-b143-bd0b64aaa379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\UI">
+      <UniqueIdentifier>{6ef2240f-b3cd-438b-9235-f5d8e3931b64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Player">
+      <UniqueIdentifier>{35a59a0e-a709-4ee6-afab-b0d52d4f72d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Core">
+      <UniqueIdentifier>{38579854-bce8-41d9-80a9-1fc08934f9c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Core">
+      <UniqueIdentifier>{90522f95-914f-41e1-9662-f2ca335de178}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Player">
+      <UniqueIdentifier>{77b299f7-883f-4c76-aec4-ea7b9e297972}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\UI">
+      <UniqueIdentifier>{4d83d4a2-71fd-4422-9862-9fbf478eb15f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\PlayerObstacles">
+      <UniqueIdentifier>{f11e081c-e9d8-433d-8867-fefe1694941f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Utility">
+      <UniqueIdentifier>{43cdf881-1743-4d20-a29e-0b7e18e10874}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Utility">
+      <UniqueIdentifier>{5d69fcc1-d4a1-46f5-86f3-7af885b920d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SFML.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Nave.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="NaveBullets.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphicsUtils.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Asteroides.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMode.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="HUD.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Power_ups.cpp">
@@ -54,29 +63,35 @@
     <ClCompile Include="PowerUp_Cadence.cpp">
       <Filter>Archivos de origen\Powerups</Filter>
     </ClCompile>
+    <ClCompile Include="PowerUp_Shield.cpp">
+      <Filter>Archivos de origen\Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="Asteroides.cpp">
+      <Filter>Archivos de origen\PlayerObstacles</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMode.cpp">
+      <Filter>Archivos de origen\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsUtils.cpp">
+      <Filter>Archivos de origen\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Archivos de origen\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="NaveBullets.cpp">
+      <Filter>Archivos de origen\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Nave.cpp">
+      <Filter>Archivos de origen\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Archivos de origen\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Nave.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="NaveBullets.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsUtils.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Asteroides.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMode.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="HUD.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Power_ups.h">
       <Filter>Archivos de encabezado\Powerups</Filter>
     </ClInclude>
@@ -85,6 +100,33 @@
     </ClInclude>
     <ClInclude Include="PowerUp_Cadence.h">
       <Filter>Archivos de encabezado\Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp_Shield.h">
+      <Filter>Archivos de encabezado\Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="Asteroides.h">
+      <Filter>Archivos de encabezado\PlayerObstacles</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Archivos de encabezado\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Nave.h">
+      <Filter>Archivos de encabezado\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="NaveBullets.h">
+      <Filter>Archivos de encabezado\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMode.h">
+      <Filter>Archivos de encabezado\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Archivos de encabezado\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsUtils.h">
+      <Filter>Archivos de origen</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

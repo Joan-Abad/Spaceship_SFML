@@ -19,9 +19,8 @@ private:
 	//Initial Values
 	float initialNaveSpeed;
 	float naveSpeed; 
-	float naveSpeedMultiplayer = 0.2f;
+	float naveSpeedMultiplayer = 0.15f;
 	float life = 1.f; 
-	bool canBeDamaged = true; 
 	//Shooting
 	bool shoot = true;
 	sf::Vector2f cannonPosition;
@@ -30,7 +29,6 @@ private:
 	sf::Clock shootingClock;
 	sf::Time shootingTimeManage;
 
-	sf::Clock damagedClock;
 	sf::Time damagedTimeManage; 
 
 	//COOLDOWNS
@@ -48,15 +46,15 @@ private:
 	bool canMoveUp = true;
 	bool canMoveDown = true;
 
-	// SOUND BUFFER	
-	sf::SoundBuffer shotSoundBuffer;
-	sf::SoundBuffer hitSoundBuffer;
+	//SHIELDS
+	sf::Texture spr_text;
+	sf::Sprite spr_shield;
 
 	//SOUNDS
 	sf::Sound shootSound;
-	sf::Sound hitSound;
 
-	
+	// SOUND BUFFER	
+	sf::SoundBuffer shotSoundBuffer;
 
 public: 
 
@@ -105,6 +103,9 @@ public:
 	sf::Clock * clockSpeedPU = nullptr;
 	sf::Time timeManagedShootPU;
 	sf::Clock * clockShootCadencePU = nullptr;
+	sf::Time timeManagedShielPU; 
+	sf::Clock * clockShieldPU = nullptr;
+	sf::Clock damagedClock;
 
 
 	//CLASS POINTERS
@@ -112,6 +113,14 @@ public:
 	Window * owningWindow = nullptr;
 
 	void checkPowerUpCD();
+	
+	bool drawShield = false;
+	bool canBeDamaged = true;
 
+	inline sf::Sprite &getPlayerShield() { return spr_shield; };
+
+	//SOUNDS
+	sf::Sound hitSound;
+	sf::SoundBuffer hitSoundBuffer;
 };
 
