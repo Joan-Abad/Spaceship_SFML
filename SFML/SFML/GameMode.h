@@ -59,6 +59,7 @@ public:
 	bool powerUpPickedSpeed = false;
 	bool powerUpPickedFirerate = false;
 	bool powerUpPickedShield = false;
+	bool AI_Destroyed = false; 
 	// Chance must be between 0 and 100
 	int chanceOfGettingPowerUp = 15;
 

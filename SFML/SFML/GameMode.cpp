@@ -180,6 +180,12 @@ void GameMode::checkSoundsToPlay()
 		GraphicsUtils::playSound(soundBufferPowerUps, soundPowerUps, "Audio/Shield.wav", 100, false);
 		powerUpPickedShield = false;
 	}
+	if (AI_Destroyed == true)
+	{
+		GraphicsUtils::playSound(buffer, sound, "Audio/AI_dead.wav", 100, false);
+		AI_Destroyed = false; 
+
+	}
 
 }
 

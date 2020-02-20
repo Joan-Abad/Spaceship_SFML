@@ -88,7 +88,7 @@
       <Filter>Archivos de origen\Core</Filter>
     </ClCompile>
     <ClCompile Include="AI.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen\PlayerObstacles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,11 +122,11 @@
     <ClInclude Include="Window.h">
       <Filter>Archivos de encabezado\Core</Filter>
     </ClInclude>
-    <ClInclude Include="AI.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="GraphicsUtils.h">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de encabezado\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>Archivos de encabezado\PlayerObstacles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

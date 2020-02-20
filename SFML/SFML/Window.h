@@ -24,6 +24,8 @@ private:
 	sf::SoundBuffer backgroundBuffer;
 	sf::Sound backgroundSound;
 
+	bool isInMainMenu = true; 
+
 public:
 	Window();
 
@@ -40,5 +42,6 @@ public:
 	void moveBackground();
 
 	bool moveUp = true;
-
+	bool GameOver = false;
+	bool exit = false; 
 };

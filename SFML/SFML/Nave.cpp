@@ -102,6 +102,7 @@ void Nave::drawBullets(sf::RenderWindow &window)
 	{
 		for (auto &bullet : vec_spaceshipBullets)
 		{
+			if(bullet->destroyed == false)
 			window.draw(bullet->getBulletSprite());
 		}
 	}
@@ -162,10 +163,10 @@ void Nave::ApplyDamageToPlayer(float damage)
 	if (life > damage)
 	{
 		life -= damage;
-		GraphicsUtils::playSound(hitSoundBuffer,hitSound,"Audio/Hit.wav",100,false);
+		GraphicsUtils::playSound(hitSoundBuffer, hitSound, "Audio/Hit.wav", 100, false);
 	}
 	else
-		owningWindow->getWindow().close();//life = 0;
+		owningWindow->GameOver = true; //life = 0;
 
 	//Set red when spaceship is damaged
 	spr_Nave.setColor(sf::Color(255, 0, 0, 255));

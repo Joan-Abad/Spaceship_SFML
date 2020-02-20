@@ -30,6 +30,10 @@ private:
 	sf::Sprite spr_BulletAI;
 	sf::Texture text_BulletAI;
 
+	//SOUND
+	sf::Sound sound_AIShoot;
+	sf::SoundBuffer buffer_AIShoot;
+
 public: 
 	AI(int anchuraPantalla, int alturaPantalla, sf::RenderWindow & window);
 	//GETTERS

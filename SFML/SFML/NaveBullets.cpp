@@ -83,6 +83,7 @@ void NaveBullets::CheckEnemiesCollision(std::vector<AI*>& vec_AI, Nave & nave)
 			
 				nave.sumPoints(ArtInt->points);
 				ArtInt->dead = true;
+				nave.owningWindow->gameMode.AI_Destroyed = true; 
 				delete(ArtInt);
 				vec_AI.erase(vec_AI.begin() + checker);
 			}

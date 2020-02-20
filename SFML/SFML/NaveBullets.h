@@ -20,7 +20,6 @@ private:
 	float bulletSize = 0.08f;
 	int damage = 1; 
 
-	bool destroyed = false; 
 
 	//BULLET LIFE TIMERS
 	sf::Clock bulletClock; 
@@ -48,7 +47,8 @@ public:
 	int getBulletDamage() { return damage; };
 
 	float bulletLifeTime();
-	
+	bool destroyed = false;
+
 	GameMode * gamemode = nullptr;
 };
 
